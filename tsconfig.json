@@ -5,6 +5,9 @@
       "dom.iterable",
       "esnext"
     ],
+    "paths": {
+      "@/*": ["src/*"] // Алиасы путей для удобства импортов
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -16,22 +19,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"] // Алиасы путей для удобства импортов
-    },
     "jsx": "preserve",
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/api/auth/[...nextauth]/route.js"  ],
   "exclude": [
     "node_modules"
   ],
