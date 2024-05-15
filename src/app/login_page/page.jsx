@@ -49,7 +49,7 @@ export default function LoginForm() {
 
                 </div>
                 <button className="flex gap-4 justify-center">
-                    <Image src={'/google.png    '} alt={""} width={32} height={32} />
+                    <Image src={'/google.png'} alt={""} width={32} height={32} />
                     Login with google
                 </button>
                 <Link className="text-sm text-right  text-gray-500 " href={"/register_page"}>
