@@ -20,3 +20,10 @@ button{
 button [type="submit"], .submit{
   @apply border-0 bg-primary text-white;
 }
+main{
+  max-width: 1325px;
+	width: 100%;
+	min-width: 320px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
