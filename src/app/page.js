@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import Link from "next/link";
-import Hero from "@/components/layout/Hero";
+import Hero from "@/components/layout/Hero"
 import HomeMenu from "@/components/layout/HomeMenu";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 
