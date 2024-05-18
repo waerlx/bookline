@@ -4,26 +4,6 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 
-export const runtime = "edge";
-
-export const revalidate = 60; // Optional: Revalidate the page every 60 seconds
-
-export const metadata = {
-  title: "My Page",
-  description: "This is my page",
-};
-
-export default async function route(req, res) {
-  // Your route logic here
-  res.status(200).json({ message: 'Hello from Next.js route!' });
-}
-
-export const config = {
-  api: {
-    externalResolver: true,
-  },
-};
-
 export const authOptions = {
   providers: [
     CredentialsProvider({
