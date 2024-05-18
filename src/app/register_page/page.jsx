@@ -22,7 +22,7 @@ export default function RegisterForm() {
     }
 
     try {
-      const resUserExists = await fetch("api/userExists", {
+      const resUserExists = await fetch("/api/userExists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,11 +33,11 @@ export default function RegisterForm() {
       const { user } = await resUserExists.json();
 
       if (user) {
-        setError("User already exists.");
+        setError("User already exists. Now you can login");
         return;
       }
 
-      const res = await fetch("api/register", {
+      const res = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export default function RegisterForm() {
           </div>
         )}
 
-        <button type="submit" className="">Register</button>
+        <button type="submit" className="mt-2">Register</button>
 
         <div className="mt-4 text-center text-gray-500">
 
@@ -103,7 +103,7 @@ export default function RegisterForm() {
 
         </div>
         <button className="flex gap-4 justify-center">
-          <Image src={'/google.png    '} alt={""} width={32} height={32} />
+          <Image src={'/google.png'} alt={""} width={32} height={32} />
           Login with google
         </button>
         <Link className="text-sm mt-3 text-right" href={"/login_page"}>
