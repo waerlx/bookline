@@ -40,6 +40,22 @@ export default function ProfilePage() {
     }
 
 
+    // function handleFileChange(ev) {
+    //     const files = ev?.files;
+    //     if (files?.length === 1) {
+    //         const data = new FormData;
+    //         data.set('file', file[0]);
+    //         await fetch('/api/upload', {
+    //             method: 'POST',
+    //             body: data,
+    //             headers: {
+    //                 'Content-Type':'multipart/form-data'
+    //             }
+    //         })
+    //     }
+    // }
+
+
 
     if (status === 'loading') {
         return 'Loading...';
@@ -65,7 +81,10 @@ export default function ProfilePage() {
                     <div className="">
                         <div className="p-2 rounded-lg relative">
                             <Image className="rounded-lg w-full h-full mb-1" src={'/user_ex.jpg'} width={230} height={230} alt={'avatar'}></Image>
-                            <button type="button">Edit</button>
+                            {/* <label >
+                            <input type="file" className="hidden" onChange={handleFileChange}/>
+                                <span className="block border border-gray-300 rounded-lg p-2 text-center cursor-pointer">Edit</span>
+                            </label> */}
 
                         </div>
                     </div>
@@ -77,7 +96,7 @@ export default function ProfilePage() {
                     </form>
                 </div>
             </div>
-            <p className="text-center text-lg">Welcome</p>
+            {/* <p className="text-center text-lg">Welcome</p> */}
         </section >
     );
 }
