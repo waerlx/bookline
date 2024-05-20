@@ -34,7 +34,7 @@ export default function Header() {
           <Link href="/profile" className="text-primary font-semibold">
               {userName}
             </Link>
-          <Button onClick={() => signOut()} className=" bg-primary rounded-full text-white px-8 py-2">Logout</Button>
+          <Button onClick={() => signOut()} className=" bg-primary rounded-full text-white px-8 pb-2 text-base hover:bg-red-400">Logout</Button>
           </>
           
         ) : (
