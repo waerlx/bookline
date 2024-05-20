@@ -3,43 +3,64 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 
 export default function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loginInProgress, setLoginInProgress] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    async function handleFormSubmit(ev) {
-        ev.preventDefault();
-        setLoginInProgress(true);
+    const router = useRouter();
 
-        await signIn('credentials', { email, password, callbackUrl: '/' });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-        setLoginInProgress(false);
-    }
+        try {
+            const res = await signIn("credentials", {
+                email,
+                password,
+                redirect: false,
+            });
+
+            if (res.error) {
+                setError("Invalid Credentials");
+                return;
+            }
+
+            router.replace("/");
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <section className="mt-8">
             <h1 className="text-center text-primary text-4xl mb-4">Login</h1>
-            <form className="block max-w-xs mx-auto" onSubmit={handleFormSubmit}>
-                <input 
-                    type="email" 
-                    placeholder="email" 
-                    value={email} 
-                    disabled={loginInProgress} 
-                    onChange={ev => setEmail(ev.target.value)} 
+            <form className="block max-w-xs mx-auto" onSubmit={handleSubmit}>
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="email"
+                    value={email}
+                    // disabled={loginInProgress}
+                    onChange={ev => setEmail(ev.target.value)}
                 />
-                <input 
-                    type="password" 
-                    placeholder="password" 
-                    disabled={loginInProgress} 
-                    value={password} 
-                    onChange={ev => setPassword(ev.target.value)} 
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="password"
+                    // disabled={loginInProgress}
+                    value={password}
+                    onChange={ev => setPassword(ev.target.value)}
                 />
-                <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2 mb-2">
-                    Error message
-                </div>
-                <button type="submit" disabled={loginInProgress} className="">Login</button>
+                {error && (
+                    <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2 mb-2">
+                        {error}
+                    </div>
+                )}
+
+                <button type="submit"  className="">Login</button>
                 <div className="mt-4 text-center text-gray-500">
                     or login with provider
                 </div>
@@ -48,7 +69,7 @@ export default function LoginForm() {
                     Login with Google
                 </button>
                 <Link className="text-sm text-right text-gray-500" href="/register_page">
-                    Don&apos;t have an account? <span className="underline">Register</span>
+                    Don't have an account? <span className="underline">Register</span>
                 </Link>
             </form>
         </section>
