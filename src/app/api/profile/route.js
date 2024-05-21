@@ -20,3 +20,12 @@ export async function PUT(req) {
     return NextResponse.json({ message: "Error updating user." }, { status: 500 });
   }
 }
+
+export async function GET() {
+  mongoose.connect(process.env.MONGODB_URI);
+  const session = await getServerSession(authOptions);
+  const email = session.user.email;
+  return Response.json(
+    await User.findOne({ email })
+  )
+}
