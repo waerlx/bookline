@@ -2,15 +2,18 @@
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
-import InfoBox from "@/components/layout/InfoBox"
-import SuccessBox from "@/components/layout/SuccessBox"
+import InfoBox from "@/components/layout/InfoBox";
+import SuccessBox from "@/components/layout/SuccessBox";
 import Image from "next/image";
 // import toast, { Toaster } from 'react-hot-toast'
 import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
+import UserTabs from "@/components/layout/UserTabs";
+
 
 export default function ProfilePage() {
     const session = useSession();
+    const [profileFetched, setProfileFetched] = useState(false);
     const [userName, setUserName] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const { status } = session;
@@ -18,13 +21,21 @@ export default function ProfilePage() {
 
     useEffect(() => {
         if (status === 'authenticated') {
-          fetch('/api/profile').then(response => {
-            response.json().then(data => {
-              setIsAdmin(data.admin);
-            })
-          });
+            (async () => {
+                try {
+                    const response = await fetch('/api/profile');
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    setIsAdmin(data.admin);
+                    setProfileFetched(true);
+                } catch (error) {
+                    console.error('Error fetching profile:', error);
+                }
+            })();
         }
-      }, [session, status]);
+    }, [session, status]);
 
 
     async function handleProfileInfoUpdate(ev) {
@@ -88,20 +99,10 @@ export default function ProfilePage() {
     return (
 
         <section className="mt-8">
-            <div className="flex gap-2 tabs">
-                <Link className="" href={'/profile'}>Profile</Link>
-                {isAdmin && (
-                    <>
-                        <Link className="" href={'/categories'}>Categories</Link>
-                        <Link className="" href={'/menu-items'}>Menu Items</Link>
-                        <Link className="" href={'/users'}>Users</Link>
-                    </>
-                )}
-            </div>
-            <h1 className="text-center text-primary text-4xl mb-4">Profile</h1>
+            <UserTabs isAdmin={isAdmin}/>
             <div className=" max-w-md mx-auto ">
 
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 items-center mt-4">
                     <div className="">
                         <div className="p-2 rounded-lg relative">
                             <Image className="rounded-lg w-full h-full mb-1" src={'/user_ex.jpg'} width={230} height={230} alt={'avatar'}></Image>
