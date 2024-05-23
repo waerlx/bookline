@@ -1,37 +1,190 @@
 import { Typography } from 'antd';
+import BubblesAnimation from '../../components/layout/BubblesAnimation'
 export default function About() {
     return (
-        <div className="about">
+        <div className="abou">
             <div className="container">
-                <h2 className='about_tit about_first_tit'>О книжном клубе MyBook</h2>
-                <Typography className='about_txt'>
-                    MyBook — это современная библиотека в интернете, которая открывает вам доступ к каталогу бестселлеров и классической литературы, включая новинки разных жанров: от художественных до научно-популярных книг и деловой литературы. Более 596 000 наименований из более чем двадцати разных жанров.
-                </Typography>
-                <Typography className='about_txt'>
-                    Привычная идея библиотеки в том, что вместо покупки отдельных книг вы получаете доступ ко всему каталогу. Мы не продаём книги и не заставляем их скачивать, а даём читать без ограничений и на разных устройствах. Достаточно оформить подписку.
-                </Typography>
-                <Typography className='about_txt'>
-                    В привычном понимании электронные книги до сих пор были похожи на бумажные: это отдельные файлы, которые нужно где-то скачать и хранить, после этого закинуть в ридер-читалку, а если у вас несколько устройств для чтения, то придётся на каждом поддерживать отдельную копию своей библиотеки. Если же вы не просто читаете книги, а ещё и сохраняете цитаты и закладки, то синхронизировать всё это чаще всего приходится вручную.
-                </Typography>
-                <Typography className='about_txt'>Именно для тех, кто читает много и с удовольствием, мы решили сделать MyBook — клуб-библиотеку, вступив в который вы сможете читать не только книги, которые у вас уже есть, но и издания из нашего обширного каталога.</Typography >
+                <div className="main_about relative flex  items-center min-h-96 mt-8"> {/* jistify-center */}
+
+                    <div >
+                        <BubblesAnimation width={1024} height={394} /> {/* Пример размеров контейнера */}
+                        <div className="relative z-10 text-white">
+                            <h1 className="text-6xl font-bold ml-28">Добро пожаловать <br /> на BookLine</h1>
+                            <p className="mt-4 text-xl ml-28"> мы стремимся сделать для Вас <br /> шопинг удобным и доступным
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <section className="main_statistic mt-12 ">
+                    <div className="general flex space-between">
+                        <div className="about-static_card static-cart">
+                            <div className="abot-stat-info">
+                                <b className='text-3xl'>100 тыс+</b>
+                                <span className='block text-lg text-gray-400'>заказов в день</span>
+                            </div>
+
+                        </div>
+                        <div className="about-static_card static-built flex space-between">
+                            <div className="abot-stat-info">
+                                <b className='text-3xl'>100 тыс+</b>
+                                <span className='block text-lg text-gray-400'>заказов в день</span>
+                            </div>
+
+                        </div>
+                        <div className="about-static_card static-box flex space-between">
+                            <div className="abot-stat-info">
+                                <b className='text-3xl'>100 тыс+</b>
+                                <span className='block text-lg text-gray-400'>заказов в день</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
 
 
 
-                <h2 className='about_tit'><b>Как устроен MyBook</b></h2>
-                <Typography className='about_txt'> У нас, как и в обычной библиотеке, нужна регистрация для того, чтобы мы точно знали, какие книги вы читаете, и могли из десятков тысяч книг предложить что-то, подходящее именно вам. После регистрации вы сразу можете начать читать любые книги — почти для каждой есть пробный фрагмент, чтобы вы могли бесплатно полистать и распробовать ту или иную книгу прежде, чем оформить подписку.</Typography>
-                <Typography className='about_txt'>Понравившиеся книги добавляйте в список чтения, оплачивайте подписку, и всё — книги в вашем распоряжении до конца оплаченного времени. Их можно читать на сайте через браузер, воспользоваться приложением для iPhone и iPad или приложением для Android.</Typography>
-                <Typography className='about_txt'>Многие книги из бесплатного набора вы можете читать без подписки, например, классику и издания, которые авторы и издатели разрешили читать без оплаты. Их больше 183 000, так что если у вас подписка закончилась, а читать хочется — обратите на них внимание или перечитайте заново что-то из вечной классики.</Typography >
+
+                <section className="about_plus">
+                    <h2 className='sec_tit text-purple-400 text-5xl mt-7 text-center'><b>Покупайте на BookLine</b></h2>
+                    <div className="general flex space-between flex-nowrap">
+                        <div className="  ">
+                            <div className="bg-white about_plus-card about_deliver plus_img border rounded-2xl mt-3 ">
+                                <p className='text-center text-lg mt-2'><b>Быстрая доставка</b></p>
+                            </div>
+
+                            <div className="plus_info text-center mt-5">
+                                <p className="plus_stat "><b className='text-center text-2xl'>Более 80%</b></p>
+                                <span className='text-gray-500 text-sm'>доставляется на <br />
+                                    следующий день</span>
+                            </div>
+                        </div>
+                        <div className="  ">
+                            <div className="bg-white about_plus-card about_deliver plus_img border rounded-2xl mt-3 about_bag">
+                                <p className='text-center text-lg mt-2'><b>Скидки и акции</b></p>
+                            </div>
+
+                            <div className="plus_info text-center mt-5">
+                                <p className="plus_stat "><b className='text-center text-2xl'>до 90%</b></p>
+                                <span className='text-gray-500 text-sm'>скидка постоянным <br />
+                                    покупателям
+                                </span>
+                            </div>
+                        </div>
+                        <div className="  ">
+                            <div className="bg-white about_plus-card about_gps plus_img border rounded-2xl mt-3">
+                                <p className='text-center text-lg mt-2'><b>Удобный самовывоз</b></p>
+                            </div>
+
+                            <div className="plus_info text-center mt-5">
+                                <p className="plus_stat "><b className='text-center text-2xl'>100 +</b></p>
+                                <span className='text-gray-500 text-sm'>пунктов выдачи заказа</span>
+                            </div>
+                        </div>
+                        <div className="  ">
+                            <div className="bg-white about_plus-card about_bag plus_img border rounded-2xl mt-3">
+                                <p className='text-center text-lg mt-2'><b>Широкий ассортимент</b></p>
+                            </div>
+
+                            <div className="plus_info text-center mt-5">
+                                <p className="plus_stat "><b className='text-center text-2xl'>10 тыс+</b></p>
+                                <span className='text-gray-500 text-sm'>ежедневно отправляемых <br />
+                                    товаров со складов</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="awards">
+                    <h2 className='sec_tit text-purple-400 text-5xl mt-7 text-center'><b>Награды</b></h2>
+                    <div className="general flex space-between flex-wrap">
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400 items-center">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                        <div className="awards_card ">
+                            <div className="award_img"></div>
+                            <div className="award_info">
+                                <h3 className='award_tit text-base text-center'><b>1-е место в рейтинге</b></h3>
+                                <p className="award_txt text-sm text-center text-gray-400">ТОП-100 крупнейших <br />
+                                    интернет-магазинов России</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
 
 
-                <h2 className='about_tit'><b>Откуда берутся книги</b></h2>
-                <Typography className='about_txt'> Сейчас у нас в коллекции более 596 000 книг. Из них 183 000 — это книги, которые можно читать бесплатно, достаточно зарегистрироваться. В каталог MyBook сейчас попадает вся коллекция изданий из книжного магазина ЛитРес, и мы постоянно работаем над тем, чтобы в каталоге появлялись всё новые и новые издательства и авторы.</Typography>
-                <Typography className='about_txt'>Десятки тысяч книг — внушительное число, но это пока совсем немного по сравнению с сотнями тысяч книг, которые доступны только в бумажном виде. Если вы представляете издательство, которое хочет свои книги открыть для читателей по подписке, или вы — автор, который хочет попасть в библиотеку, минуя привычные издательства — напишите нам.</Typography>
-                <Typography className='about_txt'>Если вы представляете правообладателя и у вас возникли вопросы по правам на книги и о распространении их через MyBook, задайте вопрос почтой, мы обязательно ответим.</Typography >
 
 
-                <h2 className='about_tit'><b>Реквизиты компании</b></h2>
-                <Typography className='about_txt'> ООО «Живая Библиотека», ОГРН 1117746445640, ИНН 7734658075, КПП 770301001</Typography>
-                <Typography className='about_txt'>Почтовый адрес: 123112, город Москва, 1-й Красногвардейский проезд, дом 15, этаж 28</Typography>
+
             </div>
 
         </div>
