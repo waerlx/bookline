@@ -13,7 +13,7 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className=" relative"> <Image src={'/anna.jpg'} layout={'fill'} objectFit={'contain'} alt={'pizza'} /></div>
+            <div className=" relative"> <Image src={'/hrupkoe_rav.jpg'} layout={'fill'} objectFit={'contain'} alt={'pizza'} /></div>
 
         </section>
     )
