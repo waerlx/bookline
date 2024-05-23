@@ -1,0 +1,34 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+export default function UserTabs({ isAdmin }) {
+    const path = usePathname();
+    console.log(path);
+
+    const links = [
+        { href: '/profile', label: 'Profile' },
+        { href: '/categories', label: 'Categories', admin: true },
+        { href: '/menu-items', label: 'Menu Items', admin: true },
+        { href: '/users', label: 'Users', admin: true },
+    ];
+
+    return (
+        <div className="flex mx-auto gap-2 tabs justify-center">
+            {links.map(link => {
+                if (!link.admin || isAdmin) {
+                    return (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={path === link.href ? 'active' : ''}
+                        >
+                            {link.label}
+                        </Link>
+                    );
+                }
+                return null;
+            })}
+        </div>
+    );
+}
