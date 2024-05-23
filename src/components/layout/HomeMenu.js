@@ -17,10 +17,14 @@ export default function HomeMenu() {
             <div className="text-center mb-4">
                 {/* <div className="text-center"></div> */}
                 <SectionHeaders subHeader={'check out'}
-                mainHeader={'Menu'}/>
+                mainHeader={'Catalog'}/>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-5 gap-4">
+               <MenuItem/>
+               <MenuItem/>
+               <MenuItem/>
+               <MenuItem/>
                <MenuItem/>
                <MenuItem/>
                <MenuItem/>
