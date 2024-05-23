@@ -1,13 +1,25 @@
 export default function MenuItem() {
     return (
-        <div className="bg-gray-200 p-4 rounded-lg text-center hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
-            <div className="text-center ">
-            <img className="max-h-auto max-h-24 block mx-auto" src="/hrupkoe_rav.jpg" alt="pizza" />
-            </div>
-            
-            <h4 className="font-semibold text-xl my-3">Хрупкое равновесие</h4>
-            <p className="text-gray-500 text-sm ">Lorem ipsum dolor sit amet consectetur adipisicing </p>
-            <button className=" mt-4 bg-primary text-white rounded-full px-8 py-2">Add to cart $12</button>
+        <div
+        data-aos="fade-up"
+        // data-aos-delay={data.aosDelay}
+        // key={data.id}
+        className=""
+      >
+        <img
+          src={'/emma.jpg'}
+          alt=""
+          className="m-auto h-[220px] w-[150px] object-cover rounded-md"
+        />
+        <div>
+          <h3 className="font-semibold"></h3>
+          <p className="text-xl text-gray-600 text-center">anna</p>
+          <div className="flex items-center gap-1">
+            {/* <FaStar className="text-yellow-400" /> */}
+            <span></span>
+          </div>
+          <button className=" mt-2 bg-primary text-white rounded-full px-4 py-2">Add to cart $12</button>
         </div>
+      </div>
     );
 }
