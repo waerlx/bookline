@@ -11,25 +11,174 @@ input[type="email"],
 input[type="password"],
 input[type="text"] {
   @apply block w-full my-4 rounded-xl;
-  @apply  border p-2 border-gray-300 bg-gray-100;
+  @apply border p-2 border-gray-300 bg-gray-100;
 }
+
 input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="tel"]:disabled,
 input[type="text"]:disabled {
-    @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
+  @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
 }
-button{
-@apply block w-full text-gray-700 font-semibold;
-@apply border border-gray-300 rounded-xl px-6 py-2;
+
+button {
+  @apply block w-full text-gray-700 font-semibold;
+  @apply border border-gray-300 rounded-xl px-6 py-2;
 }
-button [type="submit"], .submit{
+
+button [type="submit"],
+.submit {
   @apply border-0 bg-primary text-white;
 }
-main{
+
+main {
   max-width: 1325px;
-	width: 100%;
-	min-width: 320px;
-	margin: 0 auto;
-	padding: 0 15px;
+  width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+div.tabs>* {
+  @apply bg-gray-300 text-gray-700 rounded-full py-2 px-4;
+}
+
+div.tabs>*.active {
+  @apply bg-primary text-white;
+}
+
+/* header {
+  background: linear-gradient(0deg, rgba(36, 36, 36, .05) 0, rgba(36, 36, 36, .05) 100%), linear-gradient(97deg, #ed3cca .49%, #df34d2 14.88%, #d02bd9 29.27%, #bf22e1 43.14%, #ae1ae8 57.02%, #9a10f0 70.89%, #8306f7 84.76%, #7c1af8 99.15%);
+} */
+.deliver_card {
+  background-image: url(/public/about_deliver.png);
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.buble_canva {
+  border-radius: 50px;
+  color: #a356fc;
+  /* background: #000; */
+}
+
+.about-static_card {
+  padding: 24px 132px 28px 28px;
+  width: 420px;
+  position: relative;
+  border-radius: 20px;
+  background: white;
+}
+
+.about-static_card::before {
+  content: "";
+  display: block;
+  width: 101px;
+  height: 88px;
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: contain;
+  position: absolute;
+  top: 13px;
+  right: 21px;
+
+}
+
+body {
+  background: rgb(246, 246, 249);
+}
+
+.general {
+  justify-content: space-between;
+}
+
+.static-cart::before {
+  background-image: url('../../public/about_cart.png');
+}
+
+.static-built::before {
+  background-image: url('../../public/about_built.png');
+}
+
+.static-box::before {
+  background-image: url('../../public/about_box.png');
+}
+
+.plus_img {
+  min-height: 314px;
+  background-position: center bottom 28px;
+  background-size: auto 166px;
+  background-repeat: no-repeat;
+  min-width: 310px;
+}
+
+.about_deliver {
+  background-image: url('../../public/about_deliver.png');
+}
+
+.about_cart {
+  background-image: url('../../public/about_cart.png');
+}
+
+.about_gps {
+  background-image: url('../../public/about_gps.png');
+}
+
+.about_bag {
+  background-image: url('../../public/about_bag.png');
+}
+
+.sec_tit {
+  margin-bottom: 30px;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+.award_img {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.award_img:not(:hover) {
+  background-image: url('../../public/about_award_1.png');
+  background-repeat: no-repeat;
+}
+
+.award_img {
+  
+  /* background-repeat: no-repeat; */
+  background-size: auto 77%;
+  font-size: 0;
+  line-height: 1;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.1s;
+  margin-bottom: 8px;
+}
+
+.awards_card {
+  width: calc(100% / 5 - 20px);
+  margin: 0 10px;
+  padding-bottom: 20px;
+  transition: .3s ease; 
+border-radius: 20px;}
+
+.awards_card:hover{
+  background-color: #fff;
+}
+.awards_card:hover .award_img{
+  background-image: url('../../public/about_award_1-feel.png');
+}
+.awards_card:hover .award_tit{
+ color: blueviolet;
 }
