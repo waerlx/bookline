@@ -15,7 +15,7 @@ const userSchema = new Schema(
       required: true,
     },
     image: {type: String},
-    admin: {type: Boolean, default: false},
+    
   },
   { timestamps: true }
 );
