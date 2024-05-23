@@ -1,0 +1,22 @@
+/* styles.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Чтобы не было прокрутки */
+  }
+  
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .relative-content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    color: white;
+  }
