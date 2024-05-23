@@ -23,7 +23,7 @@ export default function Header() {
       <nav className="flex gap-8 text-gray-500 font-semibold">
         <Link className="text-primary font-semibold text-2xl" href="/">BookLine</Link>
         <Link href="/">Home</Link>
-        <Link href="">Menu</Link>
+        <Link href="/menu">Menu</Link>
         <Link href="/about">About</Link>
         <Link href="">Contact</Link>
       </nav>
