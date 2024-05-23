@@ -3,6 +3,10 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import {AuthProvider} from "@/app/Providers";
 import { Toaster } from "react-hot-toast";
+// import NextNProgress from 'nextjs-progressbar';
+// import alanBtn from '@alan-ai/alan-sdk-web'
+// import { useEffect } from "react";
+// const alanKey = '34c1b664d911c876a69e1011502830f12e956eca572e1d8b807a3e2338fdd0dc/stage';
 
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '500', '700'] });
 
@@ -12,10 +16,21 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // useEffect(() => {
+  //   alanBtn({
+  //     key:alanKey,
+  //     onCommand: ({command}) => {
+  //       if(command === 'testCommand'){
+  //         alert('This code was executed');
+  //       }
+  //     }
+  //   })
+  // }, [])
   return (
     <html lang="en">
       <body className={roboto.className}>
         <main className="main  mx-auto p-4">
+        {/* <NextNProgress /> */}
         <AuthProvider>
           <Toaster/>
           <Header />
