@@ -4,31 +4,37 @@ import { usePathname } from "next/navigation";
 
 export default function UserTabs({ isAdmin }) {
     const path = usePathname();
-    console.log(path);
 
-    const links = [
-        { href: '/profile', label: 'Profile' },
-        { href: '/categories', label: 'Categories', admin: true },
-        { href: '/menu-items', label: 'Menu Items', admin: true },
-        { href: '/users', label: 'Users', admin: true },
-    ];
+    // const links = [
+    //     { href: '/profile', label: 'Profile' },
+    //     { href: '/categories', label: 'Categories', admin: true },
+    //     { href: '/menu-items', label: 'Menu Items', admin: true },
+    //     { href: '/users', label: 'Users', admin: true },
+    // ];
 
     return (
         <div className="flex mx-auto gap-2 tabs justify-center">
-            {links.map(link => {
+            {/* {links.map(link => {
                 if (!link.admin || isAdmin) {
-                    return (
+                    return ( */}
                         <Link
-                            key={link.href}
-                            href={link.href}
-                            className={path === link.href ? 'active' : ''}
+                            // key={link.href}
+                            href={'/profile'}
+                            className={path === '/profile' ? 'active' : ''}
                         >
-                            {link.label}
+                            Profile
                         </Link>
-                    );
+                        {isAdmin && (
+                            <>
+                            <Link href={'/categories'}  className={path === '/categories' ? 'active' : ''}>Categories</Link>
+                            <Link href={'/menu-items'}  className={path === '/menu-items' ? 'active' : ''}>Menu Items</Link>
+                            <Link href={'/users'}  className={path === '/users' ? 'active' : ''}>Users</Link>
+                            </>
+                        )}
+                    {/* );
                 }
                 return null;
-            })}
+            })} */}
         </div>
     );
 }
