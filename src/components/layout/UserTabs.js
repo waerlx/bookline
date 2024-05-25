@@ -13,7 +13,7 @@ export default function UserTabs({ isAdmin }) {
     // ];
 
     return (
-        <div className="flex mx-auto gap-2 tabs justify-center">
+        <div className="flex mx-auto gap-2 tabs justify-center mb-3">
             {/* {links.map(link => {
                 if (!link.admin || isAdmin) {
                     return ( */}
