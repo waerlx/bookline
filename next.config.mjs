@@ -1,12 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: '*.googleusercontent.com',
-              },
-            ]
+        domains: [
+            "bookline.s3.eu-east-1.amazonaws.com",
+            "bookline.s3.amazonaws.com"
+        ]
     }
 };
 
