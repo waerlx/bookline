@@ -9,12 +9,20 @@ import Image from "next/image";
 import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
 import UserTabs from "@/components/layout/UserTabs";
+import EditableImage from "@/components/layout/EditableImage";
 
 
 export default function ProfilePage() {
     const session = useSession();
     const [profileFetched, setProfileFetched] = useState(false);
+    const [image, setImage] = useState('');
     const [userName, setUserName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [postalCode, setpostalCode] = useState('');
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+    
     const [isAdmin, setIsAdmin] = useState(false);
     const { status } = session;
     // console.log(session);
@@ -28,6 +36,12 @@ export default function ProfilePage() {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     const data = await response.json();
+                    setImage(session.data.user.image)
+                    setPhone(data.phone);
+                    setStreetAddress(data.streetAddress);
+                    setpostalCode(data.postalCode);
+                    setCity(data.city);
+                    setCountry(data.country);
                     setIsAdmin(data.admin);
                     setProfileFetched(true);
                 } catch (error) {
@@ -47,7 +61,13 @@ export default function ProfilePage() {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name: userName
+                    name: userName,
+                    image,
+                    streetAddress,
+                    phone,
+                    postalCode,
+                    city,
+                    country,
                 }),
             });
             if (response.ok)
@@ -67,23 +87,26 @@ export default function ProfilePage() {
     }
 
 
-    async function handleFileChange(ev) {
-        const files = ev.target.files;
-        if (files?.length === 1) {
-            const data = new FormData;
-            data.set('file', files[0]);
-            // console.log('hi')
-            const response = await fetch('/api/upload', {
-                method: 'POST',
-                body: data,
-            });
-            if (response.ok) {
-                toast('Uploading complete success')
-            } else {
-                toast.error('Upload error!')
-            }
-        }
-    }
+    // async function handleFileChange(ev) {
+    //     const files = ev.target.files;
+    //     if (files?.length === 1) {
+    //         const data = new FormData;
+    //         data.set('file', files[0]);
+    //         // console.log('hi')
+    //         const response = await fetch('/api/upload', {
+    //             method: 'POST',
+    //             body: data,
+    //         });
+    //         const link = await response.json();
+    //         console.log(link)
+    //         setImage(link);
+    //         if (response.ok) {
+    //             toast('Uploading complete success')
+    //         } else {
+    //             toast.error('Upload error!')
+    //         }
+    //     }
+    // }
 
 
 
@@ -105,11 +128,7 @@ export default function ProfilePage() {
                 <div className="flex gap-4 items-center mt-4">
                     <div className="">
                         <div className="p-2 rounded-lg relative">
-                            <Image className="rounded-lg w-full h-full mb-1" src={'/user_ex.jpg'} width={230} height={230} alt={'avatar'}></Image>
-                            <label >
-                                <input type="file" className="hidden" onChange={handleFileChange} />
-                                <span className="block border border-gray-300 rounded-lg p-2 text-center cursor-pointer">Edit</span>
-                            </label>
+                            <EditableImage link={image} setLink={setImage}/>
 
                         </div>
                     </div>
@@ -123,6 +142,13 @@ export default function ProfilePage() {
                         {/* <input type="text" placeholder="Street address"/>
                         <input type="text" placeholder="City"/>
                         <input type="text" placeholder="City"/> */}
+                        <input type="tel" placeholder="Phone number" value={phone} onChange={ev => setPhone(ev.target.value)} />
+                        <input type="text" placeholder="Street address" value={streetAddress} onChange={ev => setStreetAddress(ev.target.value)} />
+                        <div className="flex gap-4">
+                            <input type="text" placeholder="Postal code" value={postalCode} onChange={ev => setpostalCode(ev.target.value)}/>
+                            <input type="text" placeholder="City" value={city} onChange={ev => setCity(ev.target.value)}/>
+                        </div>
+                        <input type="text" placeholder="Country" value={country} onChange={ev => setCountry(ev.target.value)}/>
 
 
                         <button type="submit">Save</button>
