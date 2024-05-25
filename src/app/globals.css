@@ -15,12 +15,15 @@ input[type="text"] {
   /* my-1 */
   @apply border p-2 border-gray-300 bg-gray-100;
 }
+input{
+  @apply my-2;
+}
 
 input[type="email"]:disabled,
 input[type="password"]:disabled,
 input[type="tel"]:disabled,
 input[type="text"]:disabled {
-  @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500;
+  @apply bg-gray-300 border-0 cursor-not-allowed text-gray-500 my-1;
 }
 
 button {
@@ -189,3 +192,6 @@ border-radius: 20px;}
 /* button{
   @apply bg-primary
 } */
+button [type='submit'] {
+  @apply bg-primary;
+}
