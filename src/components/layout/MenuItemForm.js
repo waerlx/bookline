@@ -9,20 +9,28 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
     const [name, setName] = useState(menuItem?.name || '');
     const [price, setPrice] = useState(menuItem?.price || '');
     const [author, setAuthor] = useState(menuItem?.author || '');
-    const [genre, setGenre] = useState(menuItem?.genre || '');
+    const [category, setCategory] = useState(menuItem?.category || '');
+    const [categories, setCategories] = useState([]);
     const [description, setDescription] = useState(menuItem?.description || '');
     const [covers, setCovers] = useState(menuItem?.covers || []);
     const [paper, setPapers] = useState(menuItem?.paper || []);
+    useEffect(() => {
+        fetch('/api/categories').then(res => {
+          res.json().then(categories => {
+            setCategories(categories);
+          });
+        });
+      }, []);
 
 
 
     return (
         <form
             onSubmit={ev => onSubmit(ev, {
-                image, name, author, genre, description, price,covers, paper
+                image, name, author, category, description, price,covers, paper
             })
             }
-            className='mt-8 max-w-md mx-auto'>
+            className='mt-8 max-w-2xl mx-auto'>
             <div className="grid gap-4 items-start "
                 style={{ gridTemplateColumns: '.3fr .7fr' }}>
                 <div className="">
@@ -40,10 +48,15 @@ export default function MenuItemForm({ onSubmit, menuItem }) {
                         onChange={ev => setAuthor(ev.target.value)}
                         type="text" />
                     <label >Жанр</label>
-                    <input
-                        value={genre}
-                        onChange={ev => setGenre(ev.target.value)}
-                        type="text" />
+                    <select value={category} onChange={ev => setCategory(ev.target.value)}>
+                    {categories?.length > 0 && categories.map(c => (
+              <option key={c._id} value={c._id}>{c.name}</option>
+            ))}
+                    </select>
+                    {/* <input
+                        value={categories}
+                        onChange={ev => setCategories(ev.target.value)}
+                        type="text" /> */}
 
 
                     <label >Description</label>
