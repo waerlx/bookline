@@ -10,6 +10,7 @@ import { redirect, useParams } from "next/navigation";
 import Plus from "@/components/icons/Plus";
 import Trash from "@/components/icons/Trash";
 import MenuItemPriceProps from "@/components/layout/menuItemPriceProps";
+import DeleteButton from "@/components/DeleteButton"
 
 export default function EditMenuItemPage() {
     const { id } = useParams();
@@ -20,7 +21,8 @@ export default function EditMenuItemPage() {
     const [redirectToItems, setRedirectToItems] = useState(false);
     const [price, setPrice] = useState('');
     const [author, setAuthor] = useState('');
-    const [genre, setGenre] = useState('');
+    const [category, setCategory] = useState('');
+    const [categories, setCategories] = useState([]);
     const [covers, setCovers] = useState([]);
     const [paper, setPapers] = useState([]);
 
@@ -52,7 +54,7 @@ export default function EditMenuItemPage() {
                 setDescription(item.description);
                 setPrice(item.price);
                 setAuthor(item.author);
-                setGenre(item.genre);
+                setCategory(item.category);
                 setCovers(item.covers);
                 setPapers(item.paper);
 
@@ -63,7 +65,7 @@ export default function EditMenuItemPage() {
 
     async function handleFormSubmit(ev) {
         ev.preventDefault();
-        const data = { name, description, price, author, genre, covers, paper, image, _id: id };
+        const data = { name, description, price, author, category, covers, paper, image, _id: id };
         const savingPromise = new Promise(async (resolve, reject) => {
             const response = await fetch('/api/menu-items', {
                 method: 'PUT',
@@ -90,6 +92,36 @@ export default function EditMenuItemPage() {
 
 
     }
+
+    async function handleDeleteClick() {
+        const promise = new Promise(async (resolve, reject) => {
+            const res = await fetch('/api/menu-items?_id=' + id, {
+                method: 'DELETE',
+            });
+            if (res.ok)
+                resolve();
+            else
+                reject();
+        });
+
+        await toast.promise(promise, {
+            loading: 'Deleting...',
+            success: 'Deleted',
+            error: 'Error',
+        });
+
+        setRedirectToItems(true);
+    }
+    useEffect(() => {
+        fetch('/api/categories').then(res => {
+            res.json().then(categories => {
+                setCategories(categories);
+            });
+        });
+    }, []);
+
+
+
     if (redirectToItems) {
         return redirect('/menu-items');
     }
@@ -99,10 +131,12 @@ export default function EditMenuItemPage() {
     if (!data.admin) {
         return 'You are not admin';
     }
+
+    
     return (
-        <section>
+        <section className="mt-8">
             <UserTabs isAdmin={true} />
-            <div className="max-w-md mx-auto mt-8">
+            <div className="max-w-2xl mx-auto mt-8">
                 <Link
                     className='button flex justify-center gap-2'
                     href={'/menu-items'}>
@@ -111,7 +145,7 @@ export default function EditMenuItemPage() {
 
                 </Link>
             </div>
-            <form onSubmit={handleFormSubmit} className='mt-8 max-w-md mx-auto'>
+            <form onSubmit={handleFormSubmit} className='mt-8 max-w-2xl mx-auto'>
                 <div className="grid gap-4 items-start "
                     style={{ gridTemplateColumns: '.3fr .7fr' }}>
                     <div className="">
@@ -129,10 +163,11 @@ export default function EditMenuItemPage() {
                             onChange={ev => setAuthor(ev.target.value)}
                             type="text" />
                         <label >Жанр</label>
-                        <input
-                            value={genre}
-                            onChange={ev => setGenre(ev.target.value)}
-                            type="text" />
+                        <select value={category} onChange={ev => setCategory(ev.target.value)}>
+                            {categories?.length > 0 && categories.map(c => (
+                                <option key={c._id} value={c._id}>{c.name}</option>
+                            ))}
+                        </select>
 
 
                         <label >Description</label>
@@ -146,7 +181,7 @@ export default function EditMenuItemPage() {
                             value={price}
                             onChange={ev => setPrice(ev.target.value)}
                             type="text" />
-                        <MenuItemPriceProps name={'Covers'} addLabel={'Add type of Covrers'} props={covers} setProps={setCovers}/>
+                        <MenuItemPriceProps name={'Covers'} addLabel={'Add type of Covrers'} props={covers} setProps={setCovers} />
                         <MenuItemPriceProps name={'Paper'} addLabel={'Add type of papers prices'} props={paper} setProps={setPapers} />
 
                         <button className='bg-primary text-white ' type="submit">Save</button>
@@ -154,6 +189,12 @@ export default function EditMenuItemPage() {
 
                 </div>
             </form>
+            <div className="max-w-md  mx-auto mt-2">
+                <div className=" max-w-xs ml-auto pl-4">
+                    <DeleteButton label="Delete this menu item"
+                        onDelete={handleDeleteClick}></DeleteButton>
+                </div>
+            </div>
         </section>
     );
 }
