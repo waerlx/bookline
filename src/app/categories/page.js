@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect } from 'react';
 import UserTabs from '@/components/layout/UserTabs'; // Make sure this import matches your actual component file structure
-import { useProfile } from '@/components/layout/UseProfile'
+import { useProfile } from '@/components/UseProfile'
 import { resolve } from 'path';
 import toast from 'react-hot-toast';
+import { rejects } from 'assert';
 
 
 export default function CategoriesPage() {
@@ -69,6 +70,35 @@ export default function CategoriesPage() {
       toast.error('Не удалось создать категорию. Попробуйте еще раз.');
     }
   }
+
+  async function handleDeleteClick(_id) {
+    const promise = new Promise(async (resolve, reject) => {
+        try {
+            const response = await fetch('/api/categories?_id=' + _id, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                resolve();
+            } else {
+                reject(new Error('Failed to delete category'));
+            }
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+    try {
+        await toast.promise(promise, {
+            loading: 'Deleting category...',
+            success: 'Category deleted',
+            error: 'Error while deleting category',
+        });
+        await fetchCategories();
+    } catch (error) {
+        console.error('Error while deleting category:', error);
+    }
+}
+
   // if (profileLoading) {
   //   return 'Loading user info...';
   // }
@@ -92,23 +122,33 @@ export default function CategoriesPage() {
             </label>
             <input className='mt-0' type="text" value={categoryName} onChange={ev => setCategoryName(ev.target.value)} />
           </div>
-          <div className="">
+          <div className="flex gap-1">
             <button className='bg-primary text-white border border-primary' type="submit">{editedCategory ? 'Update' : 'Create'}</button>
+            <button type='button' onClick={() => {setEditedCategory(null); setCategoryName('');}}>Cancel</button>
           </div>
         </div>
 
       </form>
       <div>
-        <h2 className='mt-8 text-sm text-gray-600'>Edit category:</h2>
+        <h2 className='mt-8 text-sm text-gray-600'>Existing categories</h2>
         {categories?.length > 0 && categories.map(c => (
-          <button onClick={() => {
-            setEditedCategory(c);
-            setCategoryName(c.name);
-          }} className='button bg-gray-200 rounded-xl p-2 px-4 flex gap-2 mb-2 text-gray-500'>
+          <div
+            className='bg-gray-200 rounded-xl p-2 px-4 flex gap-1 mb-1 items-center'>
             {/* <span>edit category:</span> */}
-            <span className=''>{c.name}</span>
+            <div className=' grow'>{c.name}</div>
+            <div className="flex gap-1">
+              <button type='button' onClick={() => {
+                setEditedCategory(c);
+                setCategoryName(c.name);
+              }}>Edit</button>
+              <button
+              onClick={() => handleDeleteClick(c._id)}
+                type='button'>Delete</button>
+            </div>
 
-          </button>
+
+
+          </div>
         ))}
       </div>
     </section>
